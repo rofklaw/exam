@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="{% url 'logout' %}">logout</a>
+
+    <h3> {{theitem.name}} </h3>
+
+    {% for item in items %}
+    <p> {{item.User.first_name}}</p>
+    {% endfor %}
+
+  </body>
+</html>

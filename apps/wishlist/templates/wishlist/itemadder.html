@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2> WHISPER UNTO ME THY MATERIAL DESIRE, MORTAL </h2>
+    <form action="{% url 'itemcreator' %}" method="POST">
+      {% csrf_token %}
+      Item/Product <input type=text name="name"></input>
+      <input type="submit" value="then it is done"></input>
+    </form>
+
+  </body>
+</html>

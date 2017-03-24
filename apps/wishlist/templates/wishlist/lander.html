@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="{% url 'logout' %}">logout</a>
+    <h1> WISHLIST </h1>
+
+    <h3> YOUR PERSONAL DESIRES </h3>
+    <table>
+      <tr>
+        <th>ITEM</th>
+        <th>ADDED BY</th>
+        <th>DATE ADDED</th>
+        <th>ACTION </th>
+      </tr>
+      {% for wish in my_wishes %}
+      <tr>
+        <td><a href ="{% url 'iteminfo' id=wish.id %}"> {{wish.Item.name}} </a></td>
+        <td>{{wish.User.first_name}}</td>
+        <td>{{wish.Item.created_at}}</td>
+        {% if wish.User.id == my_id %}
+        <td> <a href="{% url 'deleteitem' id=wish.Item.id %}"> Delete </a>  </td>
+        {% else %}
+        <td> <a href="{% url 'takewish' id=wish.Item.id %}"> remove from wishlist> </a> </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h3> PERHAPS YOU ARE CURIOUS THE LONGINGS THAT RESIDE IN THE HEARTS OF YOUR FELLOW MEN</h3>
+
+    <table>
+    <tr>
+      <th>ITEM</th>
+      <th>ADDED BY</th>
+      <th>DATE ADDED</th>
+      <th>ACTION </th>
+    </tr>
+    {% for wish in all_wishes %}
+
+    <tr>
+      <td>
+      <a href ="{% url 'iteminfo' id=wish.id %}"> {{wish.name}} </a></td>
+      <td>{{wish.User.first_name}}</td>
+      <td>{{wish.created_at}}</td>
+      <td>
+        {% if wish.User.first_name != first_name %}
+          <a href="{% url 'makewish' id=wish.id %}"> add to wishlist </a> </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+
+    <a href="{% url 'itemadder' %}">Add an Item</a>
+
+  </body>
+</html>
